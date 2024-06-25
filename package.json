@@ -2,7 +2,6 @@
   "name": "shop_online_fe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dinhcongkhiem.github.io/ShopOnline/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
