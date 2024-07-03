@@ -100,17 +100,17 @@ function Footer() {
                     </div>
 
                 </div>
-                <div className={cx('social')}>
+                <div>
                     <h4 className={cx('title')}>VỀ NPOIL</h4>
-                    <p>
-                        {/* <iframe
+                    {/* <p>
+                        <iframe
                             src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdaunhonnpoil%2F&amp;tabs=timeline&amp;width=340&amp;height=200&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId"
                             width="340" height="200" style={{ border: 'none', overflow: 'hidden' }}
                             scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
-                             */}
+                            
 
-                    </p>
+                    </p> */}
                 </div>
             </div>
             <div className={cx('information')}>

@@ -6,7 +6,12 @@
 
 
     .hidden-block {
-        min-width: 212px
+        min-width: 212px;
+
+        @media (max-width: 740px) {
+            display: none;
+
+        }
     }
 
     .middle-block {
@@ -16,8 +21,12 @@
     }
 
     .slider {
-        width: 650px;
+        width: 73%;
 
+        @media (max-width: 850px) {
+            width: 100%;
+
+        }
     }
 
     .cooperate {
@@ -26,11 +35,18 @@
             height: 200px;
         }
 
+        @media (max-width: 850px) {
+            display: none;
+        }
     }
 
     .right-block {
         padding: 20px 10px;
         max-width: 16.6%;
+
+        @media (max-width: 850px) {
+            display: none;
+        }
 
         .title {
 
@@ -102,10 +118,12 @@
 
     }
 }
+
 .section-content {
     // display: flex;
     width: 100%;
 }
+
 .hotdeal-section {
     background-color: var(--white);
     margin-top: 1.5rem;
@@ -145,53 +163,59 @@
 
         }
     }
-    
-.content-wrapper {
-    padding: 0 6px;
-    border-right: 1px solid #ececec;
-    &:hover img {
-        transform: scale(1.1);
-    }
-    .box-image {
-        height: 212px;
-        overflow: hidden;
-        width: 212px;
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all .4s;
+    .content-wrapper {
+        padding: 0 6px;
+        border-right: 1px solid #ececec;
+
+        &:hover img {
+            transform: scale(1.1);
+        }
+
+        .box-image {
+            height: 212px;
+            overflow: hidden;
+            width: 212px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: all .4s;
+
+            }
+
 
         }
 
-       
-    }
+        .box-text {
+            margin-top: 1rem;
+            overflow: scroll;
 
-    .box-text {
-        margin-top: 1rem;
-        overflow: scroll;
-        .title-wrapper {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--secondary);
-            text-transform: uppercase;
-            & > :first-child {
+            .title-wrapper {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: var(--secondary);
+                text-transform: uppercase;
+
+                &> :first-child {
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    color: var(--black);
+
+                }
+
+                &> :last-child {
+                    margin: 8px 0;
+
+                }
+            }
+
+            .price-wrapper {
+                color: #111;
                 font-size: 1.4rem;
                 font-weight: 700;
-                color: var(--black);
-
             }
-            & > :last-child {
-                margin: 8px 0;
-
-            }
-        }
-        .price-wrapper {
-            color: #111;
-            font-size: 1.4rem;
-            font-weight: 700;
         }
     }
-}
 }

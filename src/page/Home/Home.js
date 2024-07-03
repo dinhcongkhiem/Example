@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import SectionProduct from '../../component/SectionProduct';
 
 import { fakeCategories } from './fakeCategories';
+import { useEffect, useState } from 'react';
 const cx = classNames.bind(styles);
 
 
@@ -20,7 +21,7 @@ function Home() {
     ]
     const fakeHotDeal = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
+    const [slidesToShowProduct, setSlideToShowProduct] = useState(6)
 
     const settings = {
         dots: true,
@@ -29,19 +30,37 @@ function Home() {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 1800,
+        autoplaySpeed: 2000,
     };
 
     const settingsHotDeal = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 4,
-        autoplay: true,
+        slidesToShow: slidesToShowProduct,
+        slidesToScroll: slidesToShowProduct - 1,
         autoplaySpeed: 1800,
         slickNext: true,
     };
+
+    useEffect(() => {
+        console.log('re-render');
+        const handleScroll = () => {
+            if (window.matchMedia('(max-width: 740px)').matches) {
+                setSlideToShowProduct(2);
+            } else if (window.matchMedia('(max-width: 840px)').matches) {
+                setSlideToShowProduct(4);
+            } else if (window.matchMedia('(min-width: 841px)').matches) {
+                setSlideToShowProduct(6);
+
+            }
+        }
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+
+    }, [])
     return (
         <div className={cx('wrapper')}>
             <div className={cx('section-heading')}>
@@ -141,7 +160,7 @@ function Home() {
                     <Slider {...settingsHotDeal}>
                         {fakeHotDeal.map((product) => {
                             return (
-                                <Link to='/hihi' key={product}>
+                                <Link to='/product-detail' key={product}>
                                     <div className={cx('content-wrapper')} >
                                         <div className={cx('box-image')}>
                                             <img src="https://shop.daunhotnpoil.com/wp-content/uploads/2023/09/041022989092_PLATO46HM-XO-1.jpg" alt="" />
@@ -165,7 +184,7 @@ function Home() {
             </div>
 
             {fakeCategories.map((category, index) => {
-                return <SectionProduct titleColor={category.nameCategory} category={category} key={index}/>
+                return <SectionProduct titleColor={category.nameCategory} category={category} key={index} />
 
             })}
 

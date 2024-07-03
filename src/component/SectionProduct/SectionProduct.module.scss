@@ -19,7 +19,7 @@
         justify-content: space-between;
         margin-bottom: 0;
         border-bottom: 1px solid #ececec;
-        border-top: 3px solid #ffa74e ;
+        border-top: 3px solid #ffa74e;
         color: var(--primary);
 
         .title {
@@ -41,7 +41,8 @@
                 padding: 4px 8px;
                 display: inline-block;
                 transition: all .3s;
-                &:hover  {
+
+                &:hover {
                     color: var(--secondary);
                     transform: scale(1.04);
 
@@ -58,6 +59,10 @@
                 border-radius: 4px;
             }
 
+            &> :not(:last-child) {
+                display: none;
+            }
+
         }
     }
 }
@@ -68,6 +73,11 @@
 
     .banner {
         max-width: calc(100% - 83.4%);
+
+        @media (max-width: 740px) {
+            display: none;
+
+        }
 
         .banner-img {
             max-width: 212px;
@@ -90,6 +100,11 @@
                 transform: scale(1.05);
                 background-color: rgba(0, 0, 0, .04);
             }
+
+            @media (max-width: 850px) {
+                margin: 0 0 12px 9px;
+                font-size: 1.2rem;
+            }
         }
 
         img {
@@ -98,11 +113,17 @@
         }
     }
 
+    
     .products {
         display: flex;
         flex-wrap: wrap;
         flex-basis: 83.4%;
         max-width: 83.4%;
+
+        @media (max-width: 740px) {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
     }
 
 }
@@ -113,14 +134,24 @@
     padding: 0 5px;
     border-right: 1px solid #ececec;
 
+    @media (max-width: 850px) {
+        flex-basis: 33.3%;
+        max-width: 33.3%;
+    }
+
+    @media (max-width: 740px) {
+        flex-basis: 50%;
+        max-width: 50%;
+    }
+
+
+
     &:hover img {
         transform: scale(1.1);
     }
 
     .box-image {
         overflow: hidden;
-        width: 212px;
-        height: 212px;
 
         img {
             width: 100%;

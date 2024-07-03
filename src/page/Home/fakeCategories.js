@@ -118,7 +118,7 @@ export const fakeCategories = [
             {
                 name: 'Dầu thủy lực',
                 description: 'Dầu thủy lực NP PlaTo 46 - NPOIL',
-                price: '1.470.000',
+                price: '1.550.000',
                 image: 'https://shop.daunhotnpoil.com/wp-content/uploads/2023/09/RESSO-2-6L.jpg'
             },
             {
@@ -175,6 +175,25 @@ export const fakeCategories = [
                 price: '3.470.000',
                 image: 'https://shop.daunhotnpoil.com/wp-content/uploads/2023/09/RESSO-2-6L.jpg'
             },
+            {
+                name: 'Dầu thủy lực',
+                description: 'Dầu thủy lực NP PlaTo 46 - NPOIL',
+                price: '2.470.000',
+                image: 'https://shop.daunhotnpoil.com/wp-content/uploads/2023/09/RESSO-2-6L.jpg'
+            },
+            {
+                name: 'Dầu thủy lực',
+                description: 'Dầu thủy lực NP PlaTo 46 - NPOIL',
+                price: '1.480.000',
+                image: 'https://shop.daunhotnpoil.com/wp-content/uploads/2023/09/RESSO-2-6L.jpg'
+            },
+            {
+                name: 'Dầu thủy lực',
+                description: 'Dầu thủy lực NP PlaTo 46 - NPOIL',
+                price: '3.470.000',
+                image: 'https://shop.daunhotnpoil.com/wp-content/uploads/2023/09/RESSO-2-6L.jpg'
+            },
+
         ]
     },
 ]

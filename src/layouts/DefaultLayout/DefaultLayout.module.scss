@@ -10,6 +10,11 @@
 
 }
 .content {
-    max-width: 1310px;  
-    margin-bottom: 25px;
+    max-width: var(--default-layout-width);
+    width: 100%;
+    margin-bottom: 2.5rem;
+    @media (max-width: 740px) {
+        margin: 1.5rem 0;
+    }
+
 }

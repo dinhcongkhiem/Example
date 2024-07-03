@@ -3,6 +3,7 @@
 :root {
     --primary: #FF6600;
     --secondary: #326e51;
+    --hover-background: #ff8737; 
     --black: #000;
     --white: #fff;
     --background-color: #F5FBF6;
@@ -11,6 +12,10 @@
     // Default layout
     --default-layout-header-height: 112px;
     --default-layout-width: 1310px;
+
+    // Toasity-style
+    --toastify-color-success: #2e903b !important;
+    --toastify-text-color-light: #000 !important;
 }
 
 *{

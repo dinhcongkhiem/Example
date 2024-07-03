@@ -1,27 +1,38 @@
-import styles from './Header.module.scss'
-import classNames from 'classnames/bind';
-import { faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { NavItem } from './NavItemsData';
-
+import { memo, useEffect, useRef, useState } from 'react';
+import { faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
-import NavItems from '../../../component/NavItems';
-import { useEffect, useRef, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import { Link, useLocation } from 'react-router-dom';
+import classNames from 'classnames/bind';
+
+import styles from './Header.module.scss'
+import { NavItem } from './NavItemsData';
+import NavItems from '../../../component/NavItems';
 const cx = classNames.bind(styles);
 
-function Header() {
+function Header({ setOpenModal }) {
     const [isFixed, setIsFixed] = useState(false);
     const navbarRef = useRef(null);
+    const subNavRef = useRef(null);
+    const menuBtnRef = useRef(null);
+
     const location = useLocation();
+    const [activeSubNav, setActiveSubNav] = useState(false);
+    const [isAuthen, setIsAuthen] = useState(true);
+    const handleCloseSubNav = (e) => {
+        if (document.elementFromPoint(e.clientX, e.clientY) !== subNavRef.current) {
+            setActiveSubNav(false)
+        }
+    }
+
 
     useEffect(() => {
         console.log('Header render');
         const handleScroll = () => {
             if (navbarRef.current) {
                 const scrollY = window.scrollY;
-                if (scrollY > navbarRef.current.offsetHeight + 80) {
+                if (!window.matchMedia('(max-width: 740px)').matches && scrollY > navbarRef.current.offsetHeight + 80) {
                     setIsFixed(true);
 
                 } else {
@@ -29,12 +40,11 @@ function Header() {
                 }
             }
         };
-
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [location]);
+    }, []);
 
 
 
@@ -43,7 +53,9 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('masthead')}>
                 <div className={cx('inner-masthead')}>
-
+                    <div className={cx('menu-btn')} >
+                        <FontAwesomeIcon ref={menuBtnRef} icon={faBars} onClick={() => setActiveSubNav(true)} />
+                    </div>
                     <div className={cx('logo')}>
                         <Link to="/">
                             <img src="https://shop.daunhotnpoil.com/wp-content/uploads/2023/10/logo-dau-nhot-npoil-new-1024x315.png" alt="Logo" />
@@ -79,21 +91,35 @@ function Header() {
                         </div>
                     </div>
                     <div className={cx('right-element')}>
-                        <ul>
-                            <li>
-                                <a href="" className={cx('cart-link')}>
-                                    <span>Giỏ hàng</span>
-                                    <FontAwesomeIcon icon={faCartShopping} />
-                                </a>
-                            </li>
-                            <li><a href="">
-                                <span>Đăng nhập / Đăng kí</span>
-                            </a></li>
-                        </ul>
+                        {isAuthen ?
+                            <Tippy
+                                interactive
+                                placement="bottom-end"
+                                render={(attrs) => (
+                                    <>
+                                        <ul className={cx('user-menu')} {...attrs}>
+                                            <li><Link to='/profile/info'>Thông tin cá nhân</Link></li>
+                                            <li><Link to='/cart'>Giỏ hàng</Link></li>
+                                            <li><Link to='/'>Đăng xuất</Link></li>
+
+                                        </ul>
+                                    </>
+                                )}>
+                                <button>
+                                    <FontAwesomeIcon icon={faUser} />
+                                </button>
+                            </Tippy>
+                            : <button
+                                onClick={() => setOpenModal(isAuthen && true)}>
+                                <FontAwesomeIcon icon={faUser} />
+                            </button>}
                     </div>
                 </div>
             </div>
-            <div ref={navbarRef} className={cx('navbar', { 'fixed': isFixed })}>
+            <div ref={navbarRef}
+                className={cx('navbar',
+                    { 'fixed': isFixed, 'active-navbar': activeSubNav })}
+                onClick={handleCloseSubNav}>
                 <div className={cx('inner-navbar')}>
 
                     <div className={cx('category-nav')}>
@@ -135,27 +161,15 @@ function Header() {
 
 
                     </div>
-                    <div className={cx('sub-nav')}>
+                    <div ref={subNavRef} className={cx('sub-nav', { 'active-sub-nav': activeSubNav, 'unactive-sub-nav': !activeSubNav })}>
                         <ul>
                             <li><Link to="/introduce">GIỚI THIỆU</Link></li>
-                            <li>
-                                <a href="">
-                                    SẢN PHẨM
-                                </a>
-                            </li>
-                            <li><a href="">LIÊN HỆ</a></li>
-                            <li><a href="">HỆ THỐNG CỬA HÀNG</a></li>
-                            <li><a href="">TIN TỨC</a></li>
+                            <li><Link to='/product'>SẢN PHẨM</Link></li>
+                            <li><Link to='/contact'>LIÊN HỆ</Link></li>
                         </ul>
-                    </div>
-                    <div className={cx('lookup-orders')}  >
-                        <a>
-                            <span>Tra cứu đơn hàng</span>
-                        </a>
                     </div>
                 </div>
             </div>
-
         </header>
     );
 }

@@ -1,10 +1,11 @@
 import classNames from "classnames/bind";
 import styles from './NavItems.module.scss'
 import Tippy from "@tippyjs/react/headless";
+import { memo, useEffect } from "react";
 import { useSpring, motion } from "framer-motion";
 const cx = classNames.bind(styles);
 function NavItem({ items }) {
-    const springConfig = { damping: 15, stiffness: 300 };
+    const springConfig = { damping: 15, stiffness: 100 };
     const opacity = useSpring(0, springConfig);
 
     function onMount() {
@@ -14,6 +15,9 @@ function NavItem({ items }) {
     function onHide() {
         opacity.set(0);
     }
+    useEffect(() => {
+        console.log('re-render');
+    }, []);
     return (
         <div className={cx('wrapper')}>
             {
@@ -50,5 +54,5 @@ function NavItem({ items }) {
     );
 }
 
-export default NavItem;
+export default memo(NavItem);
 

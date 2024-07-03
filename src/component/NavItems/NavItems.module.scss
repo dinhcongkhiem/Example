@@ -9,11 +9,11 @@
     transition: all .3s;
 
     &:hover {
-        background-color: var(--primary);
-        font-size: 1.49rem;
+        background-color: #e4e4e4;
     }
-    
-  
+    &:active {
+        opacity: .6;
+    }
 }
 
 .sub-menu {
